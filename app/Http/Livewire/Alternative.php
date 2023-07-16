@@ -33,7 +33,7 @@ class Alternative extends Component
         })->count() == $this->criterias->count() * $this->alternatives->count();
 
         if ($this->criterias->isNotEmpty() && $this->alternatives->isNotEmpty() && $this->criteriaCount) {
-            $this->decide();
+            $this->results = $this->decide();
             usort($this->results, function ($a, $b) {
                 return strcmp($b->qi, $a->qi);
             });
@@ -52,8 +52,9 @@ class Alternative extends Component
 
     public function rules()
     {
+
         return [
-            'alternativeName' => 'required|unique:alternatives,name',
+            'alternativeName' => 'required|unique:alternatives,name' . ($this->setAlternative != null ? ',' . $this->setAlternative->id : ''),
             'criteriaVals.*' => 'required'
         ];
     }
@@ -87,10 +88,9 @@ class Alternative extends Component
     }
 
     public function saveAlternative()
-    { //throw $th;
-
+    {
+        $this->validate();
         try {
-            $this->validate();
             $alternative = ModelsAlternative::create([
                 'name' => $this->alternativeName,
                 'project_id' => $this->projectId,
@@ -110,12 +110,12 @@ class Alternative extends Component
             $this->simpleModal = false;
             $this->notification()->success(
                 $title = 'Berhasil',
-                $description = 'Alternatif Berhasil dihapus'
+                $description = 'Alternatif Berhasil Disimpan'
             );
         } catch (\Throwable $th) {
             $this->notification()->error(
                 $title = 'Terjadi kesalahan',
-                $description = 'Gagal menghapus kriteria' . $th
+                $description = 'Gagal menghapus Alternatif' . $th
             );
         }
     }
@@ -166,8 +166,8 @@ class Alternative extends Component
     }
     public function putAlternative()
     {
+        $this->validate();
         try {
-            $this->validate();
             $updated = $this->setAlternative->update([
                 'name' => $this->alternativeName
             ]);
@@ -198,6 +198,7 @@ class Alternative extends Component
                 $title = 'Berhasil',
                 $description = 'Alternatif Berhasil diedit'
             );
+            $this->render();
             $this->simpleModal = false;
         } catch (\Throwable $th) {
             $this->simpleModal = false;
@@ -210,10 +211,11 @@ class Alternative extends Component
 
     public function decide()
     {
-        $weights = Criteria::where('project_id', $this->projectId)->pluck('weight');
+        $weights = Criteria::where('project_id', $this->projectId)->orderBy('created_at', 'asc')->pluck('weight');
         $sumWeight = Criteria::where('project_id', $this->projectId)->sum('weight');
         $newWeights = [];
-        $x = [];
+        $temp =
+            $x = [];
         $y = [];
         foreach ($weights as $key => $weight) {
             $newWeights[] = $weight / $sumWeight;
@@ -229,7 +231,7 @@ class Alternative extends Component
                 $cell = AlternativeCriteria::where('criteria_id', $criteria->id)
                     ->where('alternative_id', $alternative->id)->first();
                 if ($cell != null) {
-                    if ($criteria->type_id == 1) {
+                    if ($cell->criteria->type_id == 1) {
                         array_push($y, $cell->value / $maxY);
                     } else {
                         array_push($y, $minY / $cell->value);
@@ -249,7 +251,7 @@ class Alternative extends Component
             for ($j = 0; $j < sizeof($x); $j++) {
                 if ($x[$j] != null) {
                     if ($j < sizeof($newWeights)) {
-                        $formula1 = + ($x[$j][$key] * $newWeights[$j]);
+                        $formula1 += ($x[$j][$key] * $newWeights[$j]);
                         $formula2 *= (pow($x[$j][$key], $newWeights[$j]));
                     }
                 } else {
@@ -257,13 +259,13 @@ class Alternative extends Component
                     $formula1 = 0;
                 }
             }
-
             $Qi = 0.5 * ($formula1 + $formula2);
-            array_push($this->results, (object)[
+
+            array_push($temp, (object)[
                 'alt' => $alternative->name,
                 'qi' => $Qi
             ]);
         }
-        // dd($this->results);
+        return $temp;
     }
 }
