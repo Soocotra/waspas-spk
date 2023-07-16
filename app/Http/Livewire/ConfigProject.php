@@ -30,6 +30,11 @@ class ConfigProject extends Component
     }
 
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function rules()
     {
         return [
@@ -37,10 +42,6 @@ class ConfigProject extends Component
             'weight' => 'required|numeric|max:5|min:1',
             'type' =>   'required'
         ];
-    }
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
     }
 
 
@@ -54,7 +55,7 @@ class ConfigProject extends Component
     }
     public function saveCriteria()
     {
-
+        $this->validate();
         $criteria = Criteria::create([
             'name' => $this->criteriaName,
             'weight' => $this->weight,

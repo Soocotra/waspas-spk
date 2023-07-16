@@ -90,6 +90,7 @@ class Alternative extends Component
     { //throw $th;
 
         try {
+            $this->validate();
             $alternative = ModelsAlternative::create([
                 'name' => $this->alternativeName,
                 'project_id' => $this->projectId,
@@ -166,6 +167,7 @@ class Alternative extends Component
     public function putAlternative()
     {
         try {
+            $this->validate();
             $updated = $this->setAlternative->update([
                 'name' => $this->alternativeName
             ]);

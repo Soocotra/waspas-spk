@@ -35,6 +35,7 @@ class History extends Component
 
     public function saveProject()
     {
+        $this->validate();
         $project = Project::create(
             [
                 'name' => $this->projectName,

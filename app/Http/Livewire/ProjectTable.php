@@ -5,6 +5,9 @@ namespace App\Http\Livewire;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Project;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use WireUi\Traits\Actions;
 
 class ProjectTable extends DataTableComponent
@@ -12,6 +15,12 @@ class ProjectTable extends DataTableComponent
     use Actions;
     protected $model = Project::class;
     public $projectId;
+
+    public function builder(): Builder
+    {
+        return Project::where('user_id', Auth::user()->id);
+    }
+
     public function configure(): void
     {
         $this->setPrimaryKey('id')
@@ -19,7 +28,7 @@ class ProjectTable extends DataTableComponent
                 return route('case-detail', $row);
             });
         $this->setRefreshVisible();
-
+        $this->setBuilder($this->builder());
         $this->setColumnSelectDisabled();
     }
 

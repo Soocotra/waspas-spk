@@ -80,7 +80,6 @@
             <x-input wire:model="criteriaName" right-icon="presentation-chart-line" label="Nama Kriteria" class="my-2"
                 placeholder="Contoh: Tinggi badan" />
             <x-inputs.number wire:model="weight" label="Bobot" aria-placeholder="1-5" class="my-2" />
-
             <x-native-select label="Tipe kriteria" wire:model="type">
                 @foreach ($types as $type)
                     <option value="{{ $type->id }}">{{ $type->name }}</option>
