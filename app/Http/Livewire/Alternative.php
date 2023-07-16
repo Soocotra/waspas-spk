@@ -115,7 +115,7 @@ class Alternative extends Component
         } catch (\Throwable $th) {
             $this->notification()->error(
                 $title = 'Terjadi kesalahan',
-                $description = 'Gagal menghapus Alternatif' . $th
+                $description = 'Gagal menghapus Alternatif'
             );
         }
     }
@@ -203,7 +203,7 @@ class Alternative extends Component
         } catch (\Throwable $th) {
             $this->simpleModal = false;
             $this->notification()->error(
-                $title = 'Terjadi kesalahan ' . $th,
+                $title = 'Terjadi kesalahan ',
                 $description = 'Gagal mengubah Alternatif'
             );
         }
