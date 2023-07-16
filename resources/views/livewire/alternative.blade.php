@@ -128,7 +128,7 @@
                                                     {{ $result->alt }}
                                                 </th>
                                                 <td class="px-6 py-4" style="text-align: center">
-                                                    {{ $result->qi }}
+                                                    {{ number_format($result->qi, 10, '.', '') }}
                                                 </td>
                                                 <td class="px-6 py-3" style="text-align: center">
                                                     {{ $key + 1 }}

@@ -35,7 +35,7 @@ class Alternative extends Component
         if ($this->criterias->isNotEmpty() && $this->alternatives->isNotEmpty() && $this->criteriaCount) {
             $this->results = $this->decide();
             usort($this->results, function ($a, $b) {
-                return strcmp($b->qi, $a->qi);
+                return strcmp(number_format($b->qi, 10, '.', ''), number_format($a->qi, 10, '.', ''));
             });
         }
         return view('livewire.alternative');
