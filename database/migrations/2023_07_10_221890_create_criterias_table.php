@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('criterias', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->double('weight');
+            $table->unsignedBigInteger('alternative_id')->nullable();
+            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('alternative_id')->references('id')->on('alternatives');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->foreign('type_id')->references('id')->on('types');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('criterias');
+    }
+};
