@@ -6,7 +6,7 @@
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <div class="pb-4 bg-white dark:bg-gray-900">
                             <div class="relative my-2">
-                                <x-button wire:click="openModal" outline positive label="Tambah kriteria pembanding"
+                                <x-button wire:click="openModal" outline positive label="Tambah Kriteria Pembanding"
                                     icon="plus" spinner="openModal" />
                             </div>
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -80,7 +80,7 @@
             <x-input wire:model="criteriaName" right-icon="presentation-chart-line" label="Nama Kriteria" class="my-2"
                 placeholder="Contoh: Tinggi badan" />
             <x-inputs.number wire:model="weight" label="Bobot" aria-placeholder="1-5" class="my-2" />
-            <x-native-select label="Tipe kriteria" wire:model="type">
+            <x-native-select label="Tipe Kriteria" wire:model="type">
                 @foreach ($types as $type)
                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                 @endforeach
