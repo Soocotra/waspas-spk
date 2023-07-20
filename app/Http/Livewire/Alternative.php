@@ -96,7 +96,7 @@ class Alternative extends Component
                 'name' => $this->alternativeName,
                 'project_id' => $this->projectId,
             ]);
-            dd($this->criteriaVals);
+
             if ($alternative) {
                 foreach ($this->criteriaVals as $key => $criteria) {
                     alternativeCriteria::create(
@@ -167,7 +167,6 @@ class Alternative extends Component
     }
     public function putAlternative()
     {
-        // dd($this->criteriaVals);
 
         $this->validate();
         try {
@@ -240,7 +239,7 @@ class Alternative extends Component
                 }
             }
             array_push($x, $y);
-            
+
         }
         //PROSES PERANGKINGAN
         foreach ($this->alternatives as $key => $alternative) {
@@ -280,7 +279,7 @@ class Alternative extends Component
             ]);
             $rank++;
         }
-        
+
         return $temp;
     }
 }

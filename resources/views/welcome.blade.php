@@ -231,17 +231,17 @@
         <div class="w-full container mx-auto p-6">
 
             <div class="w-full flex items-center justify-between">
-                <a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
+                <a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl sm:mr-auto mr-20"
                     href="#">
                     <x-waspas-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    <p class="mx-5 text-2xl font-bold text-gray-800" > WASPAS </p>
+                    <p class="mx-5 text-2xl font-bold text-gray-800"> WASPAS </p>
                 </a>
 
                 <div class="flex w-1/2 justify-end content-center">
                     @auth
                     @else
                         <a href="{{ route('login') }}">
-                            <x-button icon="login" green label="Login" />
+                            <x-button icon="login" green label="Login" class="w-full" />
                         </a>
                     @endauth
                     <div class="w-5"></div>
@@ -250,7 +250,7 @@
                             <x-button icon="home" label="Dashboard" dark class="h-10" />
                         </a>
                     @else
-                        <a href="{{ route('register') }}">
+                        <a href="{{ route('register') }}" class="sm:visible invisible">
                             <x-button icon="plus" outline green label="Register" />
                         </a>
                     @endauth
@@ -293,79 +293,116 @@
             <section id="waspas" class="w-full my-10">
                 <div class="w-full flex flex-col gap-5 container mx-auto items-center m-10 mt-20">
                     {{-- <div class="w-full bg-green-500 p-2 rounded"> --}}
-                        <p class="w-full left-[69px] top-[1073px] text-center text-gray-800 text-lg md:text-xl font-extrabold">Apa itu Metode WASPAS?</p>
+                    <p
+                        class="w-full left-[69px] top-[1073px] text-center text-gray-800 text-lg md:text-xl font-extrabold">
+                        Apa itu Metode WASPAS?</p>
                     {{-- </div> --}}
-                    <p class="w-[1302px] left-[69px] top-[1148px] text-justify text-gray-800 text-base font-medium leading-7 md:leading-8">WASPAS App menggunakan Weighted Aggregated Sum Product Assesment (WASPAS) sebagai metode perhitungan dalam pemilihan keputusan. Konsep perhitungan pada metode WASPAS, yaitu menormalisasi matriks, menghitung nilai normalisasi berdasarkan bobot, dan mengurutkan alternatif berdasarkan nilai normalisasi.</p>
+                    <p
+                        class="w-[1302px] left-[69px] top-[1148px] text-justify text-gray-800 text-base font-medium leading-7 md:leading-8">
+                        WASPAS App menggunakan Weighted Aggregated Sum Product Assesment (WASPAS) sebagai metode
+                        perhitungan dalam pemilihan keputusan. Konsep perhitungan pada metode WASPAS, yaitu
+                        menormalisasi matriks, menghitung nilai normalisasi berdasarkan bobot, dan mengurutkan
+                        alternatif berdasarkan nilai normalisasi.</p>
 
                     <!--Step 1-->
                     <div class="w-full mt-2">
                         <div class="flex">
-                            <div class="w-[77px] h-[77px] px-6 py-2 left-[69px] top-[1354px]  bg-green-600 rounded justify-center items-center gap-2.5 inline-flex">
+                            <div
+                                class="w-[77px] h-[77px] px-6 py-2 left-[69px] top-[1354px]  bg-green-600 rounded justify-center items-center gap-2.5 inline-flex">
                                 <div class="grow shrink basis-0 text-center text-white text-base font-medium">1</div>
                             </div>
-                            <div class="w-96 h-[77px] mx-1 px-8 py-2 left-[162px] top-[1354px]  bg-green-600 rounded justify-start items-center gap-2.5 flex-1">
-                                <div class="grow shrink basis-0 text-left text-white text-base font-medium">Membuat Matriks Keputusan</div>
-                            </div>        
+                            <div
+                                class="w-96 h-[77px] mx-1 px-8 py-2 left-[162px] top-[1354px]  bg-green-600 rounded justify-start items-center gap-2.5 flex-1">
+                                <div class="grow shrink basis-0 text-left text-white text-base font-medium">Membuat
+                                    Matriks Keputusan</div>
+                            </div>
                         </div>
-                        <div class="w-[1302px] left-[69px] top-[1462px] mt-2 text-left text-gray-800 text-base font-medium leading-7 md:leading-8">Langkah pertama adalah memasukkan nilai-nilai alternatif ke dalam matriks keputusan.</div>
+                        <div
+                            class="w-[1302px] left-[69px] top-[1462px] mt-2 text-left text-gray-800 text-base font-medium leading-7 md:leading-8">
+                            Langkah pertama adalah memasukkan nilai-nilai alternatif ke dalam matriks keputusan.</div>
                     </div>
 
                     <div class="w-1/2 md:w-96 left-0 top-0 bg-yellow-500 rounded">
-                        <img src="{{asset('/images/matrix.png')}}" />
+                        <img src="{{ asset('/images/matrix.png') }}" />
                     </div>
 
                     <!--Step 2-->
                     <div class="w-full mt-2">
                         <div class="flex">
-                            <div class="w-[77px] h-[77px] px-6 py-2 left-[69px] top-[1354px]  bg-green-600 rounded justify-center items-center gap-2.5 inline-flex">
+                            <div
+                                class="w-[77px] h-[77px] px-6 py-2 left-[69px] top-[1354px]  bg-green-600 rounded justify-center items-center gap-2.5 inline-flex">
                                 <div class="grow shrink basis-0 text-center text-white text-base font-medium">2</div>
                             </div>
-                            <div class="w-96 h-[77px] mx-1 px-8 py-2 left-[162px] top-[1354px]  bg-green-600 rounded justify-start items-center gap-2.5 flex-1">
-                                <div class="grow shrink basis-0 text-left text-white text-base font-medium">Membuat Matriks Normalisasi</div>
-                            </div>        
+                            <div
+                                class="w-96 h-[77px] mx-1 px-8 py-2 left-[162px] top-[1354px]  bg-green-600 rounded justify-start items-center gap-2.5 flex-1">
+                                <div class="grow shrink basis-0 text-left text-white text-base font-medium">Membuat
+                                    Matriks Normalisasi</div>
+                            </div>
                         </div>
-                        <div class="w-[1302px] left-[69px] top-[1462px] mt-2 text-left text-gray-800 text-base font-medium leading-7 md:leading-8">Selanjutnya, menyusun matriks normalisasi berdasarkan matriks keputusan yang telah dibuat. Nilai matriks keputusan yang ada dimasukkan ke dalam rumus normalisasi yang berbeda tergantung jenis kriteria.</div>
+                        <div
+                            class="w-[1302px] left-[69px] top-[1462px] mt-2 text-left text-gray-800 text-base font-medium leading-7 md:leading-8">
+                            Selanjutnya, menyusun matriks normalisasi berdasarkan matriks keputusan yang telah dibuat.
+                            Nilai matriks keputusan yang ada dimasukkan ke dalam rumus normalisasi yang berbeda
+                            tergantung jenis kriteria.</div>
                     </div>
 
                     <div class="flex flex-row gap-7">
                         <div>
-                            <div class="w-[510px] left-[188px] top-[2123px]  text-center text-gray-800 text-[20px] font-medium leading-8">Jika kriteria merupakan benefit</div>
+                            <div
+                                class="w-[510px] left-[188px] top-[2123px]  text-center text-gray-800 text-[20px] font-medium leading-8">
+                                Jika kriteria merupakan benefit</div>
                             <div class="w-full md:w-96 left-0 top-0  bg-yellow-500 rounded">
-                                <img src="{{asset('/images/benefit.png')}}" />
+                                <img src="{{ asset('/images/benefit.png') }}" />
                             </div>
                         </div>
                         <div>
-                            <div class="w-[510px] left-[743px] top-[2123px]  text-center text-gray-800 text-[20px] font-medium leading-8">Jika kriteria merupakan cost</div>
+                            <div
+                                class="w-[510px] left-[743px] top-[2123px]  text-center text-gray-800 text-[20px] font-medium leading-8">
+                                Jika kriteria merupakan cost</div>
                             <div class="w-full md:w-96 left-0 top-0  bg-yellow-500 rounded">
-                                <img src="{{asset('/images/cost.png')}}" />
+                                <img src="{{ asset('/images/cost.png') }}" />
                             </div>
                         </div>
                     </div>
 
-                    <div class="w-full left-[69px] top-[2994px] text-justify text-gray-800 text-[28px] font-medium leading-8">Keterangan<br />X̄ij = nilai matriks keputusan<br />MaxiXij = nilai maksimum pada kriteria (kolom)<br>MiniXij = nilai minimum pada kriteria (kolom)</div>
+                    <div
+                        class="w-full left-[69px] top-[2994px] text-justify text-gray-800 text-[28px] font-medium leading-8">
+                        Keterangan<br />X̄ij = nilai matriks keputusan<br />MaxiXij = nilai maksimum pada kriteria
+                        (kolom)<br>MiniXij = nilai minimum pada kriteria (kolom)</div>
 
                     <!--Step 3-->
                     <div class="w-full mt-2">
                         <div class="flex">
-                            <div class="w-[77px] h-[77px] px-6 py-2 left-[69px] top-[1354px]  bg-green-600 rounded justify-center items-center gap-2.5 inline-flex">
+                            <div
+                                class="w-[77px] h-[77px] px-6 py-2 left-[69px] top-[1354px]  bg-green-600 rounded justify-center items-center gap-2.5 inline-flex">
                                 <div class="grow shrink basis-0 text-center text-white text-base font-medium">3</div>
                             </div>
-                            <div class="w-96 h-[77px] mx-1 px-8 py-2 left-[162px] top-[1354px]  bg-green-600 rounded justify-start items-center gap-2.5 flex-1">
-                                <div class="grow shrink basis-0 text-left text-white text-base font-medium">Menghitung Nilai Normalisasi Alternatif</div>
-                            </div>        
+                            <div
+                                class="w-96 h-[77px] mx-1 px-8 py-2 left-[162px] top-[1354px]  bg-green-600 rounded justify-start items-center gap-2.5 flex-1">
+                                <div class="grow shrink basis-0 text-left text-white text-base font-medium">Menghitung
+                                    Nilai Normalisasi Alternatif</div>
+                            </div>
                         </div>
-                        <div class="w-[1302px] left-[69px] top-[1462px] mt-2 text-left text-gray-800 text-base font-medium leading-7 md:leading-8">Setelah menyusun matriks ternormalisasi, nilai-nilai pada matriks ini akan dihitung menggunakan rumus WASPAS untuk mencari nilai normalisasi alternatif. Hasil nilai normalisasi alternatif menentukan peringkat akhir dari masing-masing alternatif dan menemukan solusi ideal dari permasalahan.</div>
+                        <div
+                            class="w-[1302px] left-[69px] top-[1462px] mt-2 text-left text-gray-800 text-base font-medium leading-7 md:leading-8">
+                            Setelah menyusun matriks ternormalisasi, nilai-nilai pada matriks ini akan dihitung
+                            menggunakan rumus WASPAS untuk mencari nilai normalisasi alternatif. Hasil nilai normalisasi
+                            alternatif menentukan peringkat akhir dari masing-masing alternatif dan menemukan solusi
+                            ideal dari permasalahan.</div>
                     </div>
 
                     <div class="w-2/3 md:w-96 px-3 left-0 top-0 bg-yellow-500 rounded">
-                        <img src="{{asset('/images/q.png')}}" />
+                        <img src="{{ asset('/images/q.png') }}" />
                     </div>
 
-                    <div class="w-full left-[69px] top-[2994px] text-justify text-gray-800 text-[28px] font-medium leading-8">Keterangan<br />0,5 merupakan ketetapan<br />Q = nilai normalisasi alternatif<br />X̄ij = nilai matriks ternormalisasi<br />wj = nilai bobot kriteria</div>
+                    <div
+                        class="w-full left-[69px] top-[2994px] text-justify text-gray-800 text-[28px] font-medium leading-8">
+                        Keterangan<br />0,5 merupakan ketetapan<br />Q = nilai normalisasi alternatif<br />X̄ij = nilai
+                        matriks ternormalisasi<br />wj = nilai bobot kriteria</div>
 
             </section>
             <!--END-->
-            
+
             <!--Footer-->
             <div class="w-full pt-2 pb-6 text-sm text-center md:text-left fade-in">
                 <a class="text-gray-500 no-underline hover:no-underline" href="#">&copy; WASPAS App</a>
