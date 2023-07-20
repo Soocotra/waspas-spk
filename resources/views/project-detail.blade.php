@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header" class="flex flex-row">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Kasus {{ $project->name }}
-        </h2>
+        @livewire('detail-case-header', ['project' => $project])
     </x-slot>
     <div>
         <livewire:config-project :projectId="$project->id" />
@@ -10,4 +8,5 @@
     <div>
         <livewire:alternative :projectId="$project->id" />
     </div>
+
 </x-app-layout>
