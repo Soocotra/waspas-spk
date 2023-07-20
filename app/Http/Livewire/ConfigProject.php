@@ -135,8 +135,8 @@ class ConfigProject extends Component
 
     public function putCriteria()
     {
+        $this->validate();
         try {
-            $this->validate();
             $this->setCriteria->update([
                 'name' => $this->criteriaName,
                 'weight' => $this->weight,
