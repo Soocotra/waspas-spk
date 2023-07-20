@@ -18,7 +18,7 @@ use App\Http\Controllers\ProjectController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     $projects = Project::orderBy('created_at', 'DESC')->limit(3)->get();

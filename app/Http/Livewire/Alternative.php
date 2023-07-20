@@ -214,7 +214,7 @@ class Alternative extends Component
         $weights = Criteria::where('project_id', $this->projectId)->orderBy('created_at', 'asc')->pluck('weight');
         $sumWeight = Criteria::where('project_id', $this->projectId)->sum('weight');
         $newWeights = [];
-        $temp =
+        $temp = [];
             $x = [];
         $y = [];
         foreach ($weights as $key => $weight) {
@@ -239,19 +239,21 @@ class Alternative extends Component
                 }
             }
             array_push($x, $y);
+            
         }
         //PROSES PERANGKINGAN
         foreach ($this->alternatives as $key => $alternative) {
-
+            $test = 0;
             $Qi = null;
-            $formula2 = null;
+            $formula2 = 1;
             $formula1 = null;
 
             for ($j = 0; $j < sizeof($x); $j++) {
                 if ($x[$j] != null) {
-                    if ($j < sizeof($newWeights)) {
+                    if ($j < sizeof($x)) {
                         $formula1 += ($x[$j][$key] * $newWeights[$j]);
                         $formula2 *= (pow($x[$j][$key], $newWeights[$j]));
+                        $test++;
                     }
                 } else {
                     $formula2 = 0;
@@ -266,6 +268,7 @@ class Alternative extends Component
                 'qi' => $Qi
             ]);
         }
+
         usort($temp, function ($a, $b) {
             return strcmp(number_format($b->qi, 10, '.', ''), number_format($a->qi, 10, '.', ''));
         });
@@ -276,6 +279,7 @@ class Alternative extends Component
             ]);
             $rank++;
         }
+        
         return $temp;
     }
 }
