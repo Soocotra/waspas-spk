@@ -63,7 +63,7 @@
                     class="my-4 text-3xl md:text-4xl font-bold leading-tight text-center md:text-left slide-in-bottom-h1">
                     Kamu belum memiliki <span class="text-emerald-600">proyek</span>. </h1>
             @endif
-            <p class="leading-normal text-base md:text-xl mb-8 text-center xl:text-left slide-in-bottom-subtitle">
+            <p class="leading-normal text-base md:text-lg mb-8 text-center xl:text-left slide-in-bottom-subtitle">
                 Selamat datang, {{ Auth::user()->name }}!
                 Buat proyek sistem pendukung keputusan yang dapat mempermudah pemilihan solusi ideal atas masalah Anda
                 kapan pun.</p>

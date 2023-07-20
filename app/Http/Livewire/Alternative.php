@@ -55,7 +55,7 @@ class Alternative extends Component
 
         return [
             'alternativeName' => 'required|unique:alternatives,name' . ($this->setAlternative != null ? ',' . $this->setAlternative->id : ''),
-            'criteriaVals.*' => 'required'
+            'criteriaVals.*' => 'required|numeric|min:1'
         ];
     }
 
@@ -63,7 +63,8 @@ class Alternative extends Component
     {
         return [
 
-            'criteriaVals.*.required' => 'Criteria value is required'
+            'criteriaVals.*.required' => 'Criteria value is required',
+            'criteriaVals.*.min' => 'Criteria value harus positif'
         ];
     }
 
