@@ -4,12 +4,11 @@
             Kasus: {{ $project->name }}
         </h2>
 
-        <x-button icon="pencil" label="Edit" wire:click="openEditProject"
-            class="rounded-xl text-white bg-slate-800 hover:text-white hover:bg-slate-800" />
+        <x-button icon="pencil" wire:click="openEditProject" spinner="openEditProject" class="rounded-xl " />
 
     </div>
     <x-modal wire:model.defer="simpleModal">
-        <x-card title="Consent Terms">
+        <x-card title="Edit Kasus">
             <p class="text-gray-600">
                 <x-input label="Nama Kasus" placeholder="Contoh: Smartphone" wire:model="projectName" />
             </p>

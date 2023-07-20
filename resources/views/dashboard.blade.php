@@ -30,12 +30,13 @@
                     class="my-4 text-3xl md:text-4xl font-bold leading-tight text-center md:text-left slide-in-bottom-h1">
                     <span class="text-emerald-600">Proyek</span> yang baru dibuat:
                 </h1>
-                @php
-                    $rank = 1;
-                @endphp
+
                 <div
                     class="overflow-x-auto flex-grow flex w-96 rounded-xl overflow-y-hidden space-x-3 scroll-smooth mb-5">
                     @foreach ($projects as $project)
+                        @php
+                            $rank = 1;
+                        @endphp
                         <a href="{{ route('case-detail', $project) }}">
                             <x-card class=" flex  font-bold items-center w-96 shrink cursor-pointer"
                                 padding="px-7 pr-20 py-5 md:pr-20 md:px-7" title="{{ $project->created_at }}"
@@ -43,7 +44,7 @@
                                 <h1 class="text-xl text-secondary-300 grow">
                                     {{ $project->name }}
                                 </h1>
-                                <div class="text-md text-secondary-300 ">
+                                <div class="text-sm text-secondary-300 ">
                                     @foreach (App\Models\Alternative::rankByProject($project->id)->limit(3)->get() as $alt)
                                         <h2>
                                             #{{ $rank }} {{ $alt->name }}
