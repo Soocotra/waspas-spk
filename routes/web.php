@@ -4,6 +4,7 @@ use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/dashboard', function () {
-    $projects = Project::orderBy('created_at', 'DESC')->limit(3)->get();
+    $projects = Project::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->limit(3)->get();
     return view('dashboard', ['projects' => $projects]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
