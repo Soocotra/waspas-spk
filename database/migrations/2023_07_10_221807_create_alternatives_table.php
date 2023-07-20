@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('project_id');
             $table->integer('rank')->unsigned()->nullable();
+            $table->unsignedDecimal('qi')->nullable();
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->timestamps();
         });

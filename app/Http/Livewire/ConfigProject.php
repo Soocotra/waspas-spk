@@ -16,10 +16,11 @@ class ConfigProject extends Component
     public $criterias = null;
     public $simpleModal = false;
     public $weight;
-    public $criteriaName;
+    public $setCriteria;
     public $types;
     public $type;
     public $projectId;
+    public $criteriaName;
     public $editModal = false;
     public $criteriaId;
     public function render()
@@ -48,7 +49,7 @@ class ConfigProject extends Component
     public function openModal()
     {
         $this->criteriaId;
-        $this->criteriaName = null;
+        $this->setCriteria = null;
         $this->weight = null;
         $this->type = 1;
         $this->simpleModal = true;
@@ -82,10 +83,10 @@ class ConfigProject extends Component
 
     public function editCriteria(Criteria $criteria)
     {
+        $this->setCriteria = $criteria;
         $this->criteriaName = $criteria->name;
         $this->weight = $criteria->weight;
         $this->type = $criteria->type->id;
-        $this->criteriaId = $criteria->id;
         $this->simpleModal = true;
     }
     public function deleteConfirm(Criteria $criteria)
@@ -135,8 +136,8 @@ class ConfigProject extends Component
     public function putCriteria()
     {
         try {
-            $criteria = Criteria::find($this->criteriaId);
-            $criteria->update([
+
+            $this->setCriteria->update([
                 'name' => $this->criteriaName,
                 'weight' => $this->weight,
                 'type_id' => $this->type,

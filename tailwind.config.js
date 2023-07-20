@@ -22,6 +22,10 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
+        backdropFilter: {
+            'none': 'none',
+            'blur': 'blur(20px)',
+          },
     },
 
     plugins: [forms],

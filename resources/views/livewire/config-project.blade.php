@@ -31,7 +31,6 @@
                                     @if ($criterias->isNotEmpty())
                                         @foreach ($criterias as $criteria)
                                             <input type="hidden" value="{{ $criteria->id }}" wire:model='criteriaId'>
-
                                             <tr
                                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                 <th scope="row"
@@ -76,7 +75,7 @@
         </div>
     </div>
     <x-modal wire:model.defer="simpleModal">
-        <x-card title="{{ $criteriaName != null ? 'Edit Kriteria' : 'Tambah Kriteria' }}">
+        <x-card title="{{ $setCriteria != null ? 'Edit Kriteria' : 'Tambah Kriteria' }}">
             <x-input wire:model="criteriaName" right-icon="presentation-chart-line" label="Nama Kriteria" class="my-2"
                 placeholder="Contoh: Tinggi badan" />
             <x-inputs.number wire:model="weight" label="Bobot" aria-placeholder="1-5" class="my-2" />
@@ -90,7 +89,7 @@
                 <div class="flex justify-end gap-x-4">
                     <x-button flat label="Cancel" x-on:click="close" />
                     <x-button primary label="Simpan"
-                        wire:click.prevent="{{ $criteriaId != null ? 'putCriteria' : 'saveCriteria' }}" />
+                        wire:click.prevent="{{ $setCriteria != null ? 'putCriteria' : 'saveCriteria' }}" />
                 </div>
             </x-slot>
         </x-card>

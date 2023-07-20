@@ -95,7 +95,7 @@ class Alternative extends Component
                 'name' => $this->alternativeName,
                 'project_id' => $this->projectId,
             ]);
-
+            dd($this->criteriaVals);
             if ($alternative) {
                 foreach ($this->criteriaVals as $key => $criteria) {
                     alternativeCriteria::create(
@@ -166,6 +166,8 @@ class Alternative extends Component
     }
     public function putAlternative()
     {
+        // dd($this->criteriaVals);
+
         $this->validate();
         try {
             $updated = $this->setAlternative->update([
@@ -173,8 +175,6 @@ class Alternative extends Component
             ]);
             if ($updated) {
                 foreach ($this->criteriaVals as $key => $criteria) {
-
-                    // dd(sizeof($this->criteriaVals), array_keys($this->criteriaVals, $criteria)[0], $this->setAlternative->id, $criteria);
                     $alternatifCriterias = AlternativeCriteria::where('alternative_id', $this->setAlternative->id)
                         ->where('criteria_id', array_keys($this->criteriaVals, $criteria)[0])
                         ->first();
@@ -243,7 +243,6 @@ class Alternative extends Component
         //PROSES PERANGKINGAN
         foreach ($this->alternatives as $key => $alternative) {
 
-            // dd($x[0][2], $x, sizeof($x[$key]));
             $Qi = null;
             $formula2 = null;
             $formula1 = null;
@@ -262,9 +261,20 @@ class Alternative extends Component
             $Qi = 0.5 * ($formula1 + $formula2);
 
             array_push($temp, (object)[
+                'alt_id' => $alternative->id,
                 'alt' => $alternative->name,
                 'qi' => $Qi
             ]);
+        }
+        usort($temp, function ($a, $b) {
+            return strcmp(number_format($b->qi, 10, '.', ''), number_format($a->qi, 10, '.', ''));
+        });
+        $rank = 1;
+        foreach ($temp as $key => $value) {
+            ModelsAlternative::find($value->alt_id)->update([
+                'rank' => $rank
+            ]);
+            $rank++;
         }
         return $temp;
     }
